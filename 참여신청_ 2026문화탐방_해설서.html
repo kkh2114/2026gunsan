@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta name="theme-color" content="#8B1A1A" />
+    <title>참여신청_2026문화탐방_해설서</title>
+
+    <!-- Open Graph / KakaoTalk 링크 미리보기 -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="참여신청_2026문화탐방_해설서" />
+    <meta property="og:description" content="건물은 거짓말하지 않는다. 우리도, 그렇게 짓자. | 2026. 04. 25 | 우리는 군산으로 갑니다." />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1612053155702-8611812d0959?q=80&w=800&auto=format&fit=crop" />
+    <meta property="og:image:width" content="800" />
+    <meta property="og:image:height" content="600" />
+    <meta property="og:url" content="https://2026gunsan.netlify.app" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700;900&display=swap"
+        rel="stylesheet" />
+    <style>
+        /* ── Reset & Base ───────────────────────────── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --cream: #FAF6F0;
+            --red: #8B1A1A;
+            --red-light: #A52020;
+            --sepia: #5C3D2E;
+            --ink: #2C1810;
+            --ink-mid: #4A2E20;
+            --ink-light: #7A5C48;
+            --gold: #C8A96E;
+            --line: rgba(92, 61, 46, 0.18);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Serif KR', 'Georgia', serif;
+            background-color: var(--cream);
+            color: var(--ink);
+            font-size: 16px;
+            line-height: 2.0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Header & Logo ──────────────────────────── */
+        .header-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 15px 20px;
+            background: #fff;
+        }
+
+        .header-logo img {
+            height: 36px;
+            width: auto;
+            mix-blend-mode: multiply;
+        }
+
+        .header-title {
+            font-size: clamp(15px, 4vw, 17px);
+            font-weight: 800;
+            color: var(--ink);
+            line-height: 1.3;
+            margin: 0;
+            text-align: left;
+        }
+
+        /* ── Sticky Navigation (Bottom Tab for better UX) ── */
+        .sticky-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(250, 246, 240, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid var(--line);
+            padding-bottom: calc(10px + env(safe-area-inset-bottom));
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .sticky-nav-row-1 {
+            width: 100%;
+            display: flex;
+        }
+
+        .sticky-nav-row-2 {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            padding-top: 6px;
+        }
+
+        .sticky-nav button {
+            flex: 1;
+            background: none;
+            border: none;
+            font-family: 'Noto Serif KR', serif;
+            font-size: clamp(12px, 3vw, 14px);
+            font-weight: 600;
+            color: var(--ink-light);
+            cursor: pointer;
+            padding: 8px 5px;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .sticky-nav .nav-row-1-btn {
+            flex-direction: row;
+            justify-content: center;
+            gap: 8px;
+            background: var(--red);
+            color: #fff;
+            padding: 14px 0;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .sticky-nav .nav-row-1-btn.active {
+            background: var(--red-light);
+            color: #fff;
+        }
+
+        .sticky-nav .nav-row-1-btn .nav-icon {
+            font-size: 18px;
+            margin-bottom: 0px;
+        }
+
+        .sticky-nav .nav-row-2-btn.active {
+            color: var(--red);
+        }
+
+        .sticky-nav .nav-row-2-btn.active::after {
+            content: '';
+            width: 20px;
+            height: 3px;
+            background: var(--red);
+            border-radius: 2px;
+            margin-top: 2px;
+        }
+
+        /* Nav Icons */
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 2px;
+        }
+
+        /* ── Main Layout ────────────────────────────── */
+        .page-wrap {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 10px clamp(18px, 5vw, 40px) 120px;
+            /* 하단 탭 여백 확보 */
+        }
+
+        .section-wrap {
+            scroll-margin-top: 20px;
+            padding: 40px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            display: none;
+            /* 탭 전환을 위해 기본 숨김 */
+        }
+
+        .section-wrap.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Typography & Decoration ────────────────── */
+        .top-ornament {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 1.5px solid var(--red);
+            padding-bottom: 25px;
+        }
+
+        .top-ornament .label {
+            font-size: clamp(11px, 2.2vw, 13px);
+            letter-spacing: 0.35em;
+            color: var(--red);
+            font-weight: 500;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .main-title {
+            font-size: clamp(26px, 6.5vw, 40px);
+            font-weight: 900;
+            color: var(--red);
+            line-height: 1.3;
+        }
+
+        .sub-title {
+            font-size: clamp(13px, 3vw, 16px);
+            color: var(--sepia);
+            margin-top: 10px;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+
+        .chapter {
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .chapter-label {
+            font-size: clamp(10px, 2.2vw, 12px);
+            letter-spacing: 0.4em;
+            color: var(--red);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .chapter-title {
+            font-size: clamp(18px, 4.5vw, 22px);
+            font-weight: 700;
+            color: var(--sepia);
+            position: relative;
+            padding-left: 14px;
+        }
+
+        .chapter-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 80%;
+            background: var(--red);
+            border-radius: 2px;
+        }
+
+        .section-title {
+            font-size: clamp(22px, 5.5vw, 26px);
+            font-weight: 800;
+            color: var(--red);
+            border-bottom: 2px solid var(--red);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .body-text {
+            font-size: clamp(15px, 3.5vw, 17px);
+            line-height: 2.1;
+            color: var(--ink);
+            word-break: keep-all;
+        }
+
+        .body-text p {
+            margin-bottom: 1.4em;
+        }
+
+        .emphasis {
+            font-size: clamp(15px, 3.5vw, 18px);
+            color: var(--red);
+            font-weight: 700;
+            font-style: italic;
+            margin: 1.6em 0;
+            padding-left: 1.2em;
+            border-left: 3px solid var(--red);
+            line-height: 1.9;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 40px 0;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--line);
+        }
+
+        .divider-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* ── Declaration (Prologue) ─────────────────── */
+        .declaration {
+            margin: 50px 0;
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #7A1414 0%, #8B1A1A 50%, #6B1010 100%);
+            border-radius: 6px;
+            box-shadow: 0 12px 30px rgba(139, 26, 26, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .decl-lead {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.8);
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .decl-date {
+            font-size: clamp(26px, 7vw, 40px);
+            font-weight: 900;
+            color: #FFF;
+            margin: 15px 0 10px;
+        }
+
+        .decl-statement {
+            font-size: clamp(18px, 5vw, 24px);
+            font-weight: 700;
+            color: #FFF;
+            margin-bottom: 20px;
+        }
+
+        .decl-place {
+            font-size: 18px;
+            color: var(--gold);
+            letter-spacing: 0.3em;
+        }
+
+        /* ── Info Box (Schedule) ────────────────────── */
+        .info-box {
+            border: 1.5px solid var(--red);
+            border-radius: 6px;
+            padding: 30px 20px;
+            background: rgba(139, 26, 26, 0.02);
+            margin-top: 20px;
+        }
+
+        .info-box-title {
+            font-size: 13px;
+            letter-spacing: 0.4em;
+            color: var(--red);
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .info-row {
+            display: flex;
+            gap: 14px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--line);
+            font-size: 14.5px;
+            line-height: 1.6;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-icon {
+            font-size: 16px;
+            width: 22px;
+            text-align: center;
+        }
+
+        .info-label {
+            font-weight: 700;
+            color: var(--sepia);
+            min-width: 60px;
+        }
+
+        .info-value {
+            color: var(--ink);
+        }
+
+        /* ── Images ─────────────────────────────────── */
+        .img-fluid {
+            width: 100%;
+            height: auto;
+            max-height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ── Content Cards (Vertical List for Detail) ─ */
+        .content-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 25px 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            margin-bottom: 30px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--ink);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-title::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 20px;
+            background: var(--gold);
+            border-radius: 3px;
+        }
+
+        .card-meta {
+            font-size: 14px;
+            color: var(--red);
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed var(--line);
+        }
+
+        .survey-banner {
+            background: rgba(200, 169, 110, 0.15);
+            border: 1px solid var(--gold);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .survey-banner p {
+            font-size: 14px;
+            color: var(--ink-mid);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* ── Schedule Table ─────────────────────────── */
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+        }
+
+        .schedule-table th,
+        .schedule-table td {
+            border-bottom: 1px solid var(--line);
+            padding: 15px 12px;
+            font-size: 14.5px;
+            text-align: left;
+        }
+
+        .schedule-table th {
+            font-weight: 700;
+            color: #fff;
+            background: var(--red);
+            width: 85px;
+            text-align: center;
+        }
+
+        .schedule-table td {
+            color: var(--ink-mid);
+            font-weight: 500;
+        }
+
+        /* ── Buttons ────────────────────────────────── */
+        .action-btn {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            padding: 16px;
+            background: var(--red);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(139, 26, 26, 0.25);
+            transition: background 0.3s;
+        }
+
+        .action-btn:hover {
+            background: var(--red-light);
+        }
+
+        #backToTopBtn {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            background: var(--red);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 1000;
+        }
+
+        #backToTopBtn.show {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 1. Header & Logo -->
+    <header class="header-logo" id="top">
+        <img src="data:image/jpeg;base64,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67n1uQY5zTw03tt6djbooorxj6UKKKKACiiigAooooA+ePG1+2o+MdTlLZVJjCvphPl4/LP41z9WtSYvql2zAhmmckHr941Vr6+nFRgoroj4qrJym5PqwoooqyAooooAKKKKACiiigD6B8AX7ah4L093OXiUwt/wEkD9MV01cF8JGLeErgH+G9cD/vhD/Wu9r5TFRUa0ku59hhJOVCDfYKKKKwOgKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK4L4k3ZEVjZg8MWlYfTgfzau9rzH4jsTr1svYWoP/jzf4V35ZFSxKv0ueTnc3HBSt1svxOPooor6g+DCiiigAooooAKKKKACu4+G92VvryzJ4kjEgB9VOP8A2b9K4euo8AkjxOmD1ifNcuOipYeafY9DK5uGMptd7ffoerUUUV8kfoQUUUUAFFFFABRRRQB81+I7U2XiXU7cjGy5kA+m4kfpisyvQPivo7WniCLU0T9zeIAx/wCmi8H9Nv615/X1mHqKpSjLyPjsTTdOtKD7hRRRWxgFFFFABRRRQAUUVLa20t5dQ20ClpZnCIo7knApXsCV9D3D4X2pt/BULkEefNJLz9dv/stdlVTSrBNL0q0sI+Vt4ljz64HJ/HrVuvk60/aVJT7s+zoU/Z0ow7IKKKKyNQooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigArzn4k25W+sbjHDxMmf905/9mr0aua8caab/wAPPIi5ltm80Y6lejfpz+FdmAqKniIt+n3nnZtRdbBzit1r92p5NRRRX1Z+fBRRRQAUUUUAFFFFABXX/Du3MmvSzY+WKA8+5IA/rXIV6h8P9NNpo0l44w90+Rn+4vA/XP6Vw5jUUMPLz0PVyai6uMj2Wv8AXzOuooor5Y+9CiiigAooooAKKKKAMbxRoMXiPQp7ByFkPzwuf4HHQ/TsfYmvne7tJ7G7ltbqJop4mKujdQRX1DXHeNvA8PiWH7XalYdSjXCseFlH91v6H/I9HAYxUXyT+F/geXmOCdZe0h8S/E8Joqxe2N1pt29reQPBPGcMjjBH+I96r19Ammro+caadmFFFFMQUUUUAFen/C3ws0k//CQXceI0ytqpH3j0L/Qcge+fSsrwX8PbnWpI7/U0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" alt="건설기술인협회" />
+        <h1 class="header-title">2026, 건축기술인회 문화탐방<br>(군산, 장항)</h1>
+    </header>
+
+    <!-- 2. Bottom Tab Navigation -->
+    <nav class="sticky-nav" id="stickyNav">
+        <div class="sticky-nav-row-1">
+            <button onclick="switchTab('survey')" class="nav-btn nav-row-1-btn" data-target="survey">
+                <span class="nav-icon">📝</span>행사참여 투표
+            </button>
+        </div>
+        <div class="sticky-nav-row-2">
+            <button onclick="switchTab('prologue')" class="nav-btn nav-row-2-btn active" data-target="prologue">
+                <span class="nav-icon">📜</span>프롤로그
+            </button>
+            <button onclick="switchTab('gunsan')" class="nav-btn nav-row-2-btn" data-target="gunsan">
+                <span class="nav-icon">🏛️</span>군산탐방
+            </button>
+            <button onclick="switchTab('janghang')" class="nav-btn nav-row-2-btn" data-target="janghang">
+                <span class="nav-icon">🌿</span>장항탐방
+            </button>
+            <button onclick="switchTab('schedule')" class="nav-btn nav-row-2-btn" data-target="schedule">
+                <span class="nav-icon">🕒</span>일정표
+            </button>
+        </div>
+    </nav>
+
+    <div class="page-wrap">
+
+        <!-- ============================================== -->
+        <!-- [탭 1] 프롤로그 (초대장 원문) -->
+        <!-- ============================================== -->
+        <div id="prologue" class="section-wrap active">
+            <header class="top-ornament">
+                <p class="label">건축기술인 문화탐방 · 2026</p>
+                <h1 class="main-title">건물은 거짓말하지 않는다</h1>
+                <p class="sub-title">군산, 돌과 목재에 새겨진 권력의 언어를 읽다</p>
+            </header>
+
+            <div class="chapter"><span class="chapter-label">프롤로그</span>
+                <h2 class="chapter-title">도시는 책이다</h2>
+            </div>
+            <div class="body-text">
+                <p>역사는 언제나 두 가지 언어로 쓰인다.<br>하나는 종이 위의 언어 — 역사책, 기록, 선언.<br>다른 하나는 돌과 목재와 벽돌의 언어 — 건축.</p>
+                <p>군산이라는 도시가 있다.<br>1899년, 일본의 손에 의해 강제로 열린 항구도시.<br>호남평야의 쌀을 싣고 일본으로 건너가는 배들이 드나들던 수탈의 창구.<br>그러나 그 도시는
+                    100년이 지난 지금도, 자신이 겪은 모든 것을 건축의 언어로 고스란히 간직하고 있다.</p>
+                <p>오늘, 우리는 그 언어를 읽으러 간다.</p>
+            </div>
+
+            <div class="divider">
+                <div class="divider-dot"></div>
+            </div>
+
+            <div class="chapter"><span class="chapter-label">1막</span>
+                <h2 class="chapter-title">권력은 먼저 건물을 세운다</h2>
+            </div>
+            <div class="body-text">
+                <p>지배는 총칼만으로 완성되지 않는다.<br>권력이 영속하려면 반드시 공간을 장악해야 한다.</p>
+                <p>1908년, 독일인 설계사가 설계하고 벨기에산 붉은 벽돌로 쌓아올린 구 군산세관.<br>고딕 지붕, 로마네스크 창문, 영국식 현관이 한 건물 안에 뒤섞인 절충의 산물.<br>이
+                    건물은 단순한 세관이 아니었다.<br>유럽의 권위를 빌려 입혀, '이 항구를 지배하는 자가 누구인지'를 온몸으로 선언하는 권력의 기념비였다.</p>
+                <p>옛 서울역, 한국은행 본관과 나란히 꼽히는 국내 서양 고전주의 3대 건축물.<br>그 위엄이 아름답게 느껴진다면, 우리는 잠시 멈춰야 한다.<br>그 아름다움은 수탈을 가리기 위해
+                    설계된 것이기도 하니까.</p>
+                <p>그 옆에는 조선은행 군산지점과 제18은행이 나란히 서 있다.<br>붉은 벽돌, 철근 콘크리트, 두꺼운 금고 벽.<br>이 건물들의 설계 언어는 명확하다.</p>
+            </div>
+            <div class="emphasis">"이 땅의 富는 너희 것이 아니다."</div>
+
+            <div class="divider">
+                <div class="divider-dot"></div>
+            </div>
+
+            <div class="chapter"><span class="chapter-label">2막</span>
+                <h2 class="chapter-title">같은 건물, 다른 눈</h2>
+            </div>
+            <div class="body-text">
+                <p>같은 건물 앞에 서도, 사람마다 보이는 것이 다르다.</p>
+                <p>어떤 이는 히로쓰 가옥의 아름다운 정원을 본다.<br>그런데 그 2층 야시키형 목조 가옥의 스기목 구조체가 눈에 들어오는 순간이 있다.<br>100년 전 일본에서 건너온 목재가
+                    어떻게 조인트를 맺고, 어떻게 한반도의 기후를 견뎌왔는지.<br>그것을 읽기 시작하면, 건물은 단순한 풍경이 아니라 말을 걸어오는 존재가 된다.</p>
+                <p>동국사의 고요한 사찰 앞에서도 마찬가지다.<br>지붕 물매 75도의 급경사 — 한국의 사찰이 30~45도의 완만한 선을 그릴 때, 왜 이 건물만 유독 날카롭게 하늘을
+                    찌르는가.<br>대웅전과 요사채가 복도로 직결된 공간 구성이, 한국의 건축 전통과 어떻게 다른가.<br>그 차이 속에 다른 문화, 다른 논리, 다른 세계관이 담겨 있다.</p>
+                <p>부잔교 앞에서도 멈추게 된다.<br>조수간만의 차를 극복하기 위한 부유식 접안 구조의 정교함.<br>그 기술이, 동시에 쌀 250만 섬을 일본으로 실어 나르는 데 사용되었다는 사실.
+                </p>
+            </div>
+            <div class="emphasis">기술은 중립이 아니다.<br>그것은 언제나 누군가의 의지와 목적을 실현하는 도구다.<br>건물은 그 모든 것을 담고, 지금 이 순간에도 거짓말하지 않는다.
+            </div>
+
+            <div class="divider">
+                <div class="divider-dot"></div>
+            </div>
+
+            <div class="chapter"><span class="chapter-label">3막</span>
+                <h2 class="chapter-title">기술 안에 흐르는 저항의 피</h2>
+            </div>
+            <div class="body-text">
+                <p>그러나 군산은 수탈의 도시로만 머물지 않았다.</p>
+                <p>1919년 3월, 호남 최초의 만세운동이 바로 이 군산의 거리에서 타올랐다.<br>일제가 치밀하게 설계한 식민지 도시의 가장 중심부에서,<br>가장 먼저 저항의 불꽃이 피어오른
+                    것이다.</p>
+                <p>1944년에 깔린 경암동 철길.<br>일제가 공장에서 군산역까지 신문 용지 원료를 실어 나르기 위해 부설한 산업 철도.<br>그런데 그 철길 위로 사람들이 살기
+                    시작했다.<br>수탈의 인프라 한가운데에서, 그것을 삶의 공간으로 전유하는 사람들.</p>
+                <p>1926년, 일제의 토목 기술로 산을 뚫어 만든 해망굴.<br>그 터널을 통해 아침마다 군산 시민들이 출근했고,<br>일제가 설계한 공간을 매일의 삶으로 채워나갔다.</p>
+            </div>
+            <div class="emphasis">지배자가 세운 건물 안에서도, 사람들은 자신의 역사를 써내려 갔다.<br>건축은 권력의 언어였지만, 삶은 언제나 그 언어를 다시 썼다.</div>
+
+            <div class="divider">
+                <div class="divider-dot"></div>
+            </div>
+
+            <div class="chapter"><span class="chapter-label">4막</span>
+                <h2 class="chapter-title">함께 걷는 이유</h2>
+            </div>
+            <div class="body-text">
+                <p>건물 하나를 제대로 읽으려면 여러 시선이 필요하다.<br>구조를 보는 눈, 재료를 보는 눈, 공간을 보는 눈, 맥락을 보는 눈.<br>각자가 가진 이해의 조각이 모였을
+                    때,<br>우리는 비로소 한 건물의 전모를 온전히 이해할 수 있다.</p>
+                <p>어떤 위대한 건물도 혼자 지은 것은 없다.<br>설계자, 시공자, 구조기술자, 설비기술자, 감리자 —<br>각자의 자리에서 각자의 전문성을 다하고, 그것이 하나의 건물로 완성된다.
+                </p>
+                <p>고딕·로마네스크·영국식이 한 건물 안에 어우러진 구 군산세관처럼,<br>서양식·일본식·한국식이 한 공간에 녹아든 이영춘 가옥처럼,<br>서로 다른 것들이 만나 더 풍성한 무언가를
+                    만들어내는 것 —<br>그것이 건축이고, 그것이 이 길을 함께 걷는 이유다.</p>
+            </div>
+
+            <div class="divider">
+                <div class="divider-dot"></div>
+            </div>
+
+            <div class="chapter"><span class="chapter-label">에필로그</span>
+                <h2 class="chapter-title">우리가 짓는 내일</h2>
+            </div>
+            <div class="body-text">
+                <p>군산의 붉은 벽돌 앞에 서면, 자연스럽게 한 가지 질문을 품게 된다.</p>
+            </div>
+            <div class="emphasis">"오늘 내가 설계하고 짓는 건물은,<br>100년 후 어떤 언어로 읽힐 것인가?"</div>
+            <div class="body-text">
+                <p>그 건물은 누군가를 위한 공간인가, 누군가를 배제하는 공간인가.<br>그 기술은 사람을 위해 쓰이고 있는가, 권력을 위해 쓰이고 있는가.<br>그 구조는 세월을 견딜 진실을 담고
+                    있는가.</p>
+                <p>군산의 건물들은 100년 동안 거짓말하지 않았다.<br>우리도, 그렇게 짓자.</p>
+                <p>그 거리에서, 함께 다짐하고 싶다.</p>
+            </div>
+
+            <div class="declaration">
+                <div class="decl-lead">건물은 거짓말하지 않는다.<br>우리도, 그렇게 짓자.</div>
+                <div class="decl-date">2026. 04. 25</div>
+                <div class="decl-statement">우리는 군산으로 갑니다.</div>
+            </div>
+
+            <!-- 서베이 배너 -->
+            <div class="survey-banner">
+                <p>건축기술인회 탐방에 참석하시나요? 참석 여부를 알려주세요!</p>
+                <a href="https://forms.gle/z4PqQ4WVEUCzvnn56" target="_blank" class="action-btn"
+                    style="padding:12px; font-size:15px;">참석 여부 및 설문 응답하기 (클릭)</a>
+            </div>
+        </div>
+
+
+        <!-- ============================================== -->
+        <!-- [탭 2] 군산 근대문화유산 탐방 (크롤링 상세 반영) -->
+        <!-- ============================================== -->
+        <div id="gunsan" class="section-wrap">
+            <h2 class="section-title">군산 근대문화유산 상세 해설</h2>
+
+            <div class="content-card">
+                <img src="https://www.gunsan.go.kr/upload_data/board_data/THEME/150760136294713.jpg"
+                    alt="호남관세박물관 (구 군산세관)" class="img-fluid"
+                    onerror="this.src='https://images.unsplash.com/photo-1612053155702-8611812d0959?q=80&w=800&auto=format&fit=crop'">
+                <h3 class="card-title">호남관세박물관 (구 군산세관 본관)</h3>
+                <div class="card-meta">1908년 건립 | 조적조 (로마네스크 양식)</div>
+                <div class="body-text">
+                    <p>1908년 대한제국 예산으로 건립된 서양 고전주의 양식 건축물입니다. 구 군산세관 본관은 벨기에산 붉은 벽돌을 사용하여 지어졌으며, 국내 현존하는 서양식 세관 본관 중 가장
+                        오래된 역사를 자랑합니다.</p>
+                    <p>서울역사, 한국은행 본관과 함께 국내 3대 서양 고전주의 건축물로 꼽히며, 건축사적 가치가 매우 뛰어난 곳입니다.</p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <img src="https://www.gunsan.go.kr/upload_data/board_data/THEME/150760126435212.jpg" alt="군산신흥동 일본식 가옥"
+                    class="img-fluid"
+                    onerror="this.src='https://images.unsplash.com/photo-1616010065053-91ee0591e6bf?q=80&w=800&auto=format&fit=crop'">
+                <h3 class="card-title">군산신흥동 일본식 가옥 (히로쓰 가옥)</h3>
+                <div class="card-meta">1925년 건립 | 2층 야시키형 목조 주택</div>
+                <div class="body-text">
+                    <p>일제강점기 군산지역의 유명한 포목상이었던 일본인 히로쓰 게이사브로가 지은 전형적인 일본 무가(야시키) 형식의 주택입니다.</p>
+                    <p>2층 규모의 목조 가옥으로 정교하게 꾸며진 일본식 정원이 건물을 감싸고 있으며, 뛰어난 보존 상태 덕분에 장군의 아들, 타짜 등 수많은 영화의 촬영지로도 사용되었습니다.
+                    </p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <img src="https://www.gunsan.go.kr/upload_data/board_data/THEME/150760096634758.jpg" alt="동국사 대웅전"
+                    class="img-fluid"
+                    onerror="this.src='https://images.unsplash.com/photo-1596791276020-0fc5451e59bc?q=80&w=800&auto=format&fit=crop'">
+                <h3 class="card-title">동국사 대웅전</h3>
+                <div class="card-meta">1909년 창건 | 에도 시대 양식 목조 사찰</div>
+                <div class="body-text">
+                    <p>1909년 일본인 승려 유치다에 의해 창건된 국내 유일의 일본식 사찰입니다. 화려한 단청이 없는 소박한 백골집 형태로 일본 에도 시대의 건축 양식을 그대로 띠고 있습니다.
+                    </p>
+                    <p>대웅전 처마의 급격한 기울기와 뒤편의 울창한 대나무 숲이 묘한 조화를 이루며, 일제강점기 침탈의 역사를 뼈저리게 증언하는 장소이기도 합니다.</p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <img src="https://www.gunsan.go.kr/upload_data/board_data/THEME/150760074212558.jpg" alt="근대건축관"
+                    class="img-fluid">
+                <h3 class="card-title">근대건축관 (구 조선은행 군산지점)</h3>
+                <div class="card-meta">1923년 건립 | 일제강점기 경제 수탈의 상징</div>
+                <div class="body-text">
+                    <p>1923년에 건립되어 일제강점기 식민지 금융 통치와 경제 수탈의 중심지로 활용된 은행당 건물입니다. 일본인 건축가 나카무라 요시헤이가 설계하였습니다.</p>
+                    <p>웅장한 외관과 높은 층고가 특징이며, 현재는 군산에 산재해 있는 다양한 근대 건축물의 모형과 역사를 전시하는 공간으로 활용되고 있습니다.</p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <img src="https://www.gunsan.go.kr/upload_data/board_data/THEME/150760113825838.jpg" alt="해망굴"
+                    class="img-fluid">
+                <h3 class="card-title">해망굴</h3>
+                <div class="card-meta">1926년 개통 | 반원형 터널</div>
+                <div class="body-text">
+                    <p>1926년 군산항과 시내 중심부를 연결하여 수탈의 편리성을 도모하고자 월명산 자락을 관통하여 만든 터널입니다.</p>
+                    <p>한국전쟁 당시 인민군의 지휘소로 사용되어 입구에 연합군의 총탄 흔적이 뚜렷하게 남아 있는 등, 일제강점기와 6.25 전쟁의 아픔을 모두 간직한 굴곡진 역사의 현장입니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 서베이 배너 -->
+            <div class="survey-banner">
+                <p>탐방지 해설을 읽어보셨나요? 기대되는 여정이 있으시다면 설문에서 의견을 남겨주세요!</p>
+                <a href="https://forms.gle/z4PqQ4WVEUCzvnn56" target="_blank" class="action-btn"
+                    style="padding:12px; font-size:15px;">설문 응답하기 (클릭)</a>
+            </div>
+        </div>
+
+
+        <!-- ============================================== -->
+        <!-- [탭 3] 장항 탐방 (국립생태원 크롤링 상세 반영) -->
+        <!-- ============================================== -->
+        <div id="janghang" class="section-wrap">
+            <h2 class="section-title">장항 국립생태원 상세 해설</h2>
+
+            <div class="content-card">
+                <img src="https://www.nie.re.kr/cmm/fms/getImage.do?atchFileId=FILE_00000000000001&fileSn=1"
+                    alt="에코리움 전경" class="img-fluid"
+                    onerror="this.src='https://images.unsplash.com/photo-1542317148-8b4bdccb33ea?q=80&w=800&auto=format&fit=crop'">
+                <h3 class="card-title">에코리움 (Ecorium)</h3>
+                <div class="card-meta">아시아 최대 규모 생태 전시관 | 세계 5대 기후대 재현</div>
+                <div class="body-text">
+                    <p>국립생태원의 핵심인 에코리움은 건축적인 곡선미와 거대한 온실 구조가 돋보이는 공간입니다. 세계 5대 기후대를 완벽하게 구현하여, 한 공간 안에서 지구 생태계를 모두 경험할 수
+                        있습니다.</p>
+                    <p><b>1. 열대관:</b> 아시아, 중남미, 아프리카의 열대우림을 재현. 아마존 피라루크 등 거대 어류와 700여 종의 열대 식물로 덮인 정글을 구현했습니다.</p>
+                    <p><b>2. 사막관:</b> 마다가스카르, 나미브, 아타카마 등 주요 사막을 재현했으며, 300여 종의 선인장과 환경에 적응한 사막여우, 프레리독을 관찰할 수 있습니다.</p>
+                    <p><b>3. 지중해관:</b> 향기로운 허브와 올리브나무, 그리고 식충식물 등 메마르고 따뜻한 기후에 특화된 식생 구조를 보여줍니다.</p>
+                    <p><b>4. 온대관:</b> 한반도의 사계절을 그대로 재현한 곳으로, 제주 곶자왈 지대의 식물과 야외 구역으로 이어지는 수달 서식지 등을 설계했습니다.</p>
+                    <p><b>5. 극지관:</b> 개마고원, 타이가, 툰드라 지대부터 실제 펭귄(젠투펭귄, 턱끈펭귄)이 서식하는 남/북극의 극한 환경을 체험할 수 있습니다.</p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3 class="card-title">장항 기벌포 해전 전망대 (스카이워크)</h3>
+                <div class="card-meta">송림산림욕장 내 | 구조 공학의 대비</div>
+                <div class="body-text">
+                    <p>높이 15m, 길이 236m에 달하는 해안 스카이워크입니다. 일제강점기 제련소 매연을 막기 위해 심어진 해송(송림산림욕장)의 수관(Canopy)을 관통하며 뻗어있는 철골 지상
+                        교량입니다.</p>
+                    <p>자연의 훼손을 막기 위해 핀포인트로 하중을 견뎌낸 철골 공학 구조가 인상적이며, 발밑이 훤히 뚫린 그레이팅(Grating) 바닥 마감을 통해 구조물의 수직적 깊이감을 직접
+                        체감할 수 있습니다.</p>
+                </div>
+            </div>
+
+            <!-- 서베이 배너 -->
+            <div class="survey-banner">
+                <p>생태와 건축 기술의 조화, 직접 확인하러 가시죠!</p>
+                <a href="https://forms.gle/z4PqQ4WVEUCzvnn56" target="_blank" class="action-btn"
+                    style="padding:12px; font-size:15px;">참석 여부 응답하기 (클릭)</a>
+            </div>
+        </div>
+
+
+        <!-- ============================================== -->
+        <!-- [탭 4] 일정표 -->
+        <!-- ============================================== -->
+        <div id="schedule" class="section-wrap">
+            <h2 class="section-title">4월 25일 전체 일정표</h2>
+            <div class="info-box" style="margin-top:0; border:none; background:#fff; padding:0;">
+                <table class="schedule-table">
+                    <tr>
+                        <th>06:40</th>
+                        <td>양재역 집결 및 인원 점검</td>
+                    </tr>
+                    <tr>
+                        <th>07:00</th>
+                        <td>양재역 출발</td>
+                    </tr>
+                    <tr>
+                        <th>07:30</th>
+                        <td>중간 경유지 (1호차 죽전/ 2호차 동천/ 3호차 신갈)</td>
+                    </tr>
+                    <tr>
+                        <th>09:40</th>
+                        <td>군산 도착 (단체 사진)</td>
+                    </tr>
+                    <tr>
+                        <th>10:00</th>
+                        <td>군산근대역사박물관 및 근대문화거리 도보 탐방</td>
+                    </tr>
+                    <tr>
+                        <th>12:00</th>
+                        <td>집결 (단체 사진)</td>
+                    </tr>
+                    <tr>
+                        <th>12:30</th>
+                        <td>점심 식사 (바다횟집, 오민회관)</td>
+                    </tr>
+                    <tr>
+                        <th>13:40</th>
+                        <td>군산 출발</td>
+                    </tr>
+                    <tr>
+                        <th>14:00</th>
+                        <td>장항 국립 생태원 도착</td>
+                    </tr>
+                    <tr>
+                        <th>14:30</th>
+                        <td>장항 국립 생태원 탐방 (에코리움 등)</td>
+                    </tr>
+                    <tr>
+                        <th>16:30</th>
+                        <td>집결 (단체 사진)</td>
+                    </tr>
+                    <tr>
+                        <th>17:00</th>
+                        <td>마량포구 노을 산책 및 스카이워크</td>
+                    </tr>
+                    <tr>
+                        <th>17:30</th>
+                        <td>저녁 식사 (일송회집 / 장산로 625)</td>
+                    </tr>
+                    <tr>
+                        <th>19:00</th>
+                        <td>서울로 출발</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="info-box">
+                <p style="text-align:center; font-weight:700; color:var(--red); margin-bottom:15px;">📌 진행 및 참고사항</p>
+                <ul style="padding-left:20px; font-size:14.5px; line-height:1.8; color:var(--ink-mid);">
+                    <li>군산시 문화관광과 해설사 3명 동행 지원 (시청 063-454-3338)</li>
+                    <li>입장료 2,000원 (단, 65세 이상 무료 혜택)</li>
+                    <li>국립생태원 입장료 5,000원 (65세 이상 무료) - <b>신분증 반드시 지참 요망</b></li>
+                </ul>
+                <div class="divider">
+                    <div class="divider-dot"></div>
+                </div>
+                <p style="font-size:14px; color:var(--ink); text-align:center;">
+                    <strong>주관:</strong> 건설기술인협회 건축기술인회 지속가능 건축위원장 임영준<br>
+                    <strong>행사총괄:</strong> 사무총장 채석훈 (010-8313-0345)<br>
+                    <strong>행사진행:</strong> 조승래 대의원 (010-9211-2458)<br>
+                    <strong>행사진행:</strong> 임요섭 대의원 (010-4304-9494)
+                </p>
+            </div>
+
+            <!-- 서베이 배너 -->
+            <div class="survey-banner">
+                <p>전체 일정을 확인하셨다면 지금 바로 참가 신청을 완료해 주세요.</p>
+                <a href="https://forms.gle/z4PqQ4WVEUCzvnn56" target="_blank" class="action-btn"
+                    style="padding:12px; font-size:15px;">참가자 설문 폼으로 이동</a>
+            </div>
+        </div>
+
+
+        <!-- ============================================== -->
+        <!-- [탭 5] 설문(참여여부) - 별도 섹션 -->
+        <!-- ============================================== -->
+        <div id="survey" class="section-wrap">
+            <h2 class="section-title">참가 신청 및 설문</h2>
+
+            <div class="content-card" style="text-align:center; padding: 40px 20px;">
+                <span style="font-size:40px; display:block; margin-bottom:15px;">📋</span>
+                <h3 style="font-size:22px; margin-bottom:10px; color:var(--ink);">건축기술인 문화탐방 2026</h3>
+                <p class="body-text" style="color:var(--ink-light); margin-bottom:30px;">
+                    안전하고 원활한 탐방 진행을 위해, 회원 여러분들의<br>참석 여부와 간단한 설문을 수합하고 있습니다.<br>
+                    아래 버튼을 눌러 양식을 작성해 주시면 감사하겠습니다.
+                </p>
+                <a href="https://forms.gle/z4PqQ4WVEUCzvnn56" target="_blank" class="action-btn"
+                    style="font-size:18px; padding:20px;">
+                    📝 참석 여부 설문지 바로가기 (Click)
+                </a>
+            </div>
+        </div>
+
+    </div> <!-- /page-wrap -->
+
+    <!-- 최상단 이동 버튼 -->
+    <button id="backToTopBtn" onclick="scrollToTop()">↑</button>
+
+    <script>
+        // 하단 탭 스위치 로직
+        function switchTab(tabId) {
+            // 1. 모든 탭 버튼과 섹션 비활성화
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.section-wrap').forEach(sec => sec.classList.remove('active'));
+
+            // 2. 선택된 탭 버튼과 섹션 활성화
+            document.querySelector(`[data-target="${tabId}"]`).classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+
+            // 3. 최상단으로 부드럽게 자동 스크롤
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 최상단으로 이동 버튼
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 스크롤 감지 (최상단 버튼 노출 로직)
+        window.addEventListener('scroll', () => {
+            const topBtn = document.getElementById('backToTopBtn');
+            if (window.scrollY > 300) {
+                topBtn.classList.add('show');
+            } else {
+                topBtn.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+
+</html>

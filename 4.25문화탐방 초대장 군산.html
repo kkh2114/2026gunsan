@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="theme-color" content="#8B1A1A" />
+  <title>건물은 거짓말하지 않는다 — 군산 역사탐방 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:   #FAF6F0;
+      --red:     #8B1A1A;
+      --red-light: #A52020;
+      --sepia:   #5C3D2E;
+      --ink:     #2C1810;
+      --ink-mid: #4A2E20;
+      --ink-light: #7A5C48;
+      --gold:    #C8A96E;
+      --line:    rgba(92,61,46,0.18);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Serif KR', 'Georgia', serif;
+      background-color: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 2.0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Wrapper ────────────────────────────────── */
+    .page-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: clamp(24px, 5vw, 64px) clamp(20px, 6vw, 72px);
+    }
+
+    /* ── Top ornament ───────────────────────────── */
+    .top-ornament {
+      text-align: center;
+      padding-bottom: 28px;
+      border-bottom: 1.5px solid var(--red);
+      margin-bottom: 40px;
+    }
+    .top-ornament .label {
+      font-size: clamp(11px, 2.2vw, 13px);
+      letter-spacing: 0.35em;
+      color: var(--red);
+      font-weight: 500;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .top-ornament .main-title {
+      font-size: clamp(26px, 6.5vw, 48px);
+      font-weight: 900;
+      color: var(--red);
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+    .top-ornament .sub-title {
+      font-size: clamp(12px, 2.8vw, 16px);
+      color: var(--sepia);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+    }
+    /* Decorative arch SVG line */
+    .top-ornament .arch-line {
+      margin: 20px auto 0;
+      display: block;
+      width: clamp(160px, 50%, 260px);
+    }
+
+    /* ── Chapter header ─────────────────────────── */
+    .chapter {
+      margin-top: clamp(40px, 8vw, 64px);
+      margin-bottom: 22px;
+    }
+    .chapter-label {
+      font-size: clamp(10px, 2vw, 12px);
+      letter-spacing: 0.4em;
+      color: var(--red);
+      font-weight: 600;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .chapter-title {
+      font-size: clamp(15px, 3.2vw, 20px);
+      font-weight: 700;
+      color: var(--sepia);
+      letter-spacing: 0.06em;
+      position: relative;
+      padding-left: 14px;
+    }
+    .chapter-title::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 80%;
+      background: var(--red);
+      border-radius: 2px;
+    }
+
+    /* ── Body text ──────────────────────────────── */
+    .body-text {
+      font-size: clamp(15px, 3vw, 17.5px);
+      line-height: 2.1;
+      color: var(--ink);
+      font-weight: 400;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+    .body-text p {
+      margin-bottom: 1.4em;
+    }
+    .body-text p:last-child { margin-bottom: 0; }
+
+    /* ── Emphasis line ──────────────────────────── */
+    .emphasis {
+      font-size: clamp(15px, 3vw, 18px);
+      color: var(--red);
+      font-weight: 700;
+      font-style: italic;
+      margin: 1.6em 0;
+      padding-left: 1.2em;
+      border-left: 3px solid var(--red);
+      line-height: 1.9;
+    }
+
+    /* ── Divider ────────────────────────────────── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: clamp(32px, 7vw, 52px) 0;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+    .divider-dot {
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── Declaration section ────────────────────── */
+    .declaration {
+      margin: clamp(48px, 10vw, 80px) 0 clamp(36px, 7vw, 60px);
+      text-align: center;
+      padding: clamp(36px, 8vw, 60px) clamp(20px, 5vw, 48px);
+      background: linear-gradient(135deg, #7A1414 0%, #8B1A1A 50%, #6B1010 100%);
+      border-radius: 4px;
+      box-shadow: 0 12px 48px rgba(139,26,26,0.22), 0 2px 8px rgba(0,0,0,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+    .declaration::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          45deg,
+          rgba(255,255,255,0.015) 0px,
+          rgba(255,255,255,0.015) 1px,
+          transparent 1px,
+          transparent 12px
+        );
+      pointer-events: none;
+    }
+    .decl-lead {
+      font-size: clamp(13px, 2.8vw, 16px);
+      color: rgba(255,255,255,0.72);
+      letter-spacing: 0.12em;
+      font-weight: 300;
+      margin-bottom: 18px;
+      font-style: italic;
+      line-height: 1.8;
+    }
+    .decl-lead span { display: block; margin-bottom: 4px; }
+    .decl-divider-line {
+      width: clamp(60px, 20%, 120px);
+      height: 1px;
+      background: rgba(200,169,110,0.5);
+      margin: 20px auto;
+    }
+    .decl-date {
+      font-size: clamp(30px, 8.5vw, 60px);
+      font-weight: 900;
+      color: #FFFFFF;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.3);
+    }
+    .decl-statement {
+      font-size: clamp(18px, 5vw, 30px);
+      font-weight: 700;
+      color: rgba(255,255,255,0.94);
+      line-height: 1.5;
+      letter-spacing: 0.04em;
+      margin-bottom: 24px;
+    }
+    .decl-divider-line2 {
+      width: clamp(80px, 25%, 160px);
+      height: 1px;
+      background: rgba(200,169,110,0.5);
+      margin: 20px auto;
+    }
+    .decl-place {
+      font-size: clamp(16px, 4vw, 24px);
+      font-weight: 400;
+      color: var(--gold);
+      letter-spacing: 0.5em;
+      font-style: normal;
+    }
+
+    /* ── Info box ───────────────────────────────── */
+    .info-box {
+      border: 1.5px solid var(--red);
+      border-radius: 4px;
+      padding: clamp(24px, 5vw, 40px) clamp(20px, 5vw, 40px);
+      margin: clamp(36px, 7vw, 56px) 0;
+      background: rgba(139,26,26,0.03);
+    }
+    .info-box-title {
+      font-size: clamp(11px, 2.2vw, 13px);
+      letter-spacing: 0.4em;
+      color: var(--red);
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: clamp(13.5px, 2.8vw, 15.5px);
+      line-height: 1.7;
+      color: var(--ink-mid);
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      width: 22px;
+      text-align: center;
+    }
+    .info-label {
+      font-weight: 700;
+      color: var(--sepia);
+      flex-shrink: 0;
+      min-width: 70px;
+    }
+    .info-value { color: var(--ink); }
+    .info-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--line);
+      margin: 18px 0;
+    }
+    .info-apply {
+      margin-top: 18px;
+      text-align: center;
+    }
+    .apply-btn {
+      display: inline-block;
+      background: var(--red);
+      color: #fff;
+      font-family: 'Noto Serif KR', serif;
+      font-size: clamp(13px, 2.8vw, 15px);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      padding: 13px 36px;
+      border-radius: 2px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      border: none;
+      outline: none;
+    }
+    .apply-btn:hover { background: var(--red-light); transform: translateY(-1px); }
+    .apply-btn:active { transform: translateY(0); }
+    .org-line {
+      text-align: center;
+      margin-top: 18px;
+      font-size: clamp(12px, 2.4vw, 13.5px);
+      color: var(--ink-light);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Footer quote ───────────────────────────── */
+    .footer-quote {
+      margin-top: clamp(32px, 6vw, 48px);
+      text-align: center;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+    .footer-quote p {
+      font-size: clamp(12.5px, 2.6vw, 14.5px);
+      font-style: italic;
+      color: var(--ink-light);
+      line-height: 1.9;
+    }
+
+    /* ── Bottom ornament ────────────────────────── */
+    .bottom-ornament {
+      text-align: center;
+      margin-top: 32px;
+      padding-bottom: 12px;
+    }
+    .bottom-ornament .dots {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .bottom-ornament .dot {
+      width: 5px; height: 5px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+    .bottom-ornament .dot.big { width: 7px; height: 7px; }
+
+    /* ── Responsive tweaks ──────────────────────── */
+    @media (max-width: 480px) {
+      .page-wrap { padding: 28px 18px; }
+      .info-label { min-width: 56px; font-size: 13px; }
+      .info-value { font-size: 13px; }
+      .decl-place { letter-spacing: 0.3em; }
+    }
+
+    @media (min-width: 900px) {
+      body { font-size: 17px; }
+    }
+
+    /* ── Print ──────────────────────────────────── */
+    @media print {
+      body { background: #fff; }
+      .page-wrap { max-width: 100%; padding: 20mm 18mm; }
+      .apply-btn { display: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- ═══ TOP ORNAMENT ═══════════════════════════ -->
+  <header class="top-ornament">
+    <p class="label">건축기술인 문화탐방 · 2026</p>
+    <h1 class="main-title">건물은 거짓말하지 않는다</h1>
+    <p class="sub-title">군산, 돌과 목재에 새겨진 권력의 언어를 읽다</p>
+    <svg class="arch-line" viewBox="0 0 260 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="12" x2="70" y2="12" stroke="#C8A96E" stroke-width="1"/>
+      <path d="M80 20 Q130 2 180 20" stroke="#8B1A1A" stroke-width="1.5" fill="none"/>
+      <line x1="190" y1="12" x2="260" y2="12" stroke="#C8A96E" stroke-width="1"/>
+      <circle cx="130" cy="11" r="3" fill="#8B1A1A"/>
+      <circle cx="75" cy="12" r="2" fill="#C8A96E"/>
+      <circle cx="185" cy="12" r="2" fill="#C8A96E"/>
+    </svg>
+  </header>
+
+  <!-- ═══ PROLOGUE ════════════════════════════════ -->
+  <div class="chapter">
+    <span class="chapter-label">프롤로그</span>
+    <h2 class="chapter-title">도시는 책이다</h2>
+  </div>
+  <div class="body-text">
+    <p>역사는 언제나 두 가지 언어로 쓰인다.</p>
+    <p>하나는 종이 위의 언어 — 역사책, 기록, 선언.<br>
+    다른 하나는 돌과 목재와 벽돌의 언어 — 건축.</p>
+    <p>군산이라는 도시가 있다.<br>
+    1899년, 일본의 손에 의해 강제로 열린 항구도시.<br>
+    호남평야의 쌀을 싣고 일본으로 건너가는 배들이 드나들던 수탈의 창구.<br>
+    그러나 그 도시는 100년이 지난 지금도, 자신이 겪은 모든 것을 건축의 언어로 고스란히 간직하고 있다.</p>
+    <p>오늘, 우리는 그 언어를 읽으러 간다.</p>
+  </div>
+
+  <div class="divider"><div class="divider-dot"></div></div>
+
+  <!-- ═══ 1막 ══════════════════════════════════════ -->
+  <div class="chapter">
+    <span class="chapter-label">1막</span>
+    <h2 class="chapter-title">권력은 먼저 건물을 세운다</h2>
+  </div>
+  <div class="body-text">
+    <p>지배는 총칼만으로 완성되지 않는다.<br>
+    권력이 영속하려면 반드시 공간을 장악해야 한다.</p>
+    <p>1908년, 독일인 설계사가 설계하고 벨기에산 붉은 벽돌로 쌓아올린 구 군산세관.<br>
+    고딕 지붕, 로마네스크 창문, 영국식 현관이 한 건물 안에 뒤섞인 절충의 산물.<br>
+    이 건물은 단순한 세관이 아니었다.<br>
+    유럽의 권위를 빌려 입혀, '이 항구를 지배하는 자가 누구인지'를 온몸으로 선언하는 권력의 기념비였다.</p>
+    <p>옛 서울역, 한국은행 본관과 나란히 꼽히는 국내 서양 고전주의 3대 건축물.<br>
+    그 위엄이 아름답게 느껴진다면, 우리는 잠시 멈춰야 한다.<br>
+    그 아름다움은 수탈을 가리기 위해 설계된 것이기도 하니까.</p>
+    <p>그 옆에는 조선은행 군산지점과 제18은행이 나란히 서 있다.<br>
+    붉은 벽돌, 철근 콘크리트, 두꺼운 금고 벽.<br>
+    이 건물들의 설계 언어는 명확하다.</p>
+  </div>
+  <div class="emphasis">"이 땅의 富는 너희 것이 아니다."</div>
+
+  <div class="divider"><div class="divider-dot"></div></div>
+
+  <!-- ═══ 2막 ══════════════════════════════════════ -->
+  <div class="chapter">
+    <span class="chapter-label">2막</span>
+    <h2 class="chapter-title">같은 건물, 다른 눈</h2>
+  </div>
+  <div class="body-text">
+    <p>같은 건물 앞에 서도, 사람마다 보이는 것이 다르다.</p>
+    <p>어떤 이는 히로쓰 가옥의 아름다운 정원을 본다.<br>
+    그런데 그 2층 야시키형 목조 가옥의 스기목 구조체가 눈에 들어오는 순간이 있다.<br>
+    100년 전 일본에서 건너온 목재가 어떻게 조인트를 맺고, 어떻게 한반도의 기후를 견뎌왔는지.<br>
+    그것을 읽기 시작하면, 건물은 단순한 풍경이 아니라 말을 걸어오는 존재가 된다.</p>
+    <p>동국사의 고요한 사찰 앞에서도 마찬가지다.<br>
+    지붕 물매 75도의 급경사 — 한국의 사찰이 30~45도의 완만한 선을 그릴 때, 왜 이 건물만 유독 날카롭게 하늘을 찌르는가.<br>
+    대웅전과 요사채가 복도로 직결된 공간 구성이, 한국의 건축 전통과 어떻게 다른가.<br>
+    그 차이 속에 다른 문화, 다른 논리, 다른 세계관이 담겨 있다.</p>
+    <p>부잔교 앞에서도 멈추게 된다.<br>
+    조수간만의 차를 극복하기 위한 부유식 접안 구조의 정교함.<br>
+    그 기술이, 동시에 쌀 250만 섬을 일본으로 실어 나르는 데 사용되었다는 사실.</p>
+  </div>
+  <div class="emphasis">기술은 중립이 아니다.<br>
+  그것은 언제나 누군가의 의지와 목적을 실현하는 도구다.<br>
+  건물은 그 모든 것을 담고, 지금 이 순간에도 거짓말하지 않는다.</div>
+
+  <div class="divider"><div class="divider-dot"></div></div>
+
+  <!-- ═══ 3막 ══════════════════════════════════════ -->
+  <div class="chapter">
+    <span class="chapter-label">3막</span>
+    <h2 class="chapter-title">기술 안에 흐르는 저항의 피</h2>
+  </div>
+  <div class="body-text">
+    <p>그러나 군산은 수탈의 도시로만 머물지 않았다.</p>
+    <p>1919년 3월, 호남 최초의 만세운동이 바로 이 군산의 거리에서 타올랐다.<br>
+    일제가 치밀하게 설계한 식민지 도시의 가장 중심부에서,<br>
+    가장 먼저 저항의 불꽃이 피어오른 것이다.</p>
+    <p>1944년에 깔린 경암동 철길.<br>
+    일제가 공장에서 군산역까지 신문 용지 원료를 실어 나르기 위해 부설한 산업 철도.<br>
+    그런데 그 철길 위로 사람들이 살기 시작했다.<br>
+    수탈의 인프라 한가운데에서, 그것을 삶의 공간으로 전유하는 사람들.</p>
+    <p>1926년, 일제의 토목 기술로 산을 뚫어 만든 해망굴.<br>
+    그 터널을 통해 아침마다 군산 시민들이 출근했고,<br>
+    일제가 설계한 공간을 매일의 삶으로 채워나갔다.</p>
+  </div>
+  <div class="emphasis">지배자가 세운 건물 안에서도, 사람들은 자신의 역사를 써내려 갔다.<br>
+  건축은 권력의 언어였지만, 삶은 언제나 그 언어를 다시 썼다.</div>
+
+  <div class="divider"><div class="divider-dot"></div></div>
+
+  <!-- ═══ 4막 ══════════════════════════════════════ -->
+  <div class="chapter">
+    <span class="chapter-label">4막</span>
+    <h2 class="chapter-title">함께 걷는 이유</h2>
+  </div>
+  <div class="body-text">
+    <p>건물 하나를 제대로 읽으려면 여러 시선이 필요하다.<br>
+    구조를 보는 눈, 재료를 보는 눈, 공간을 보는 눈, 맥락을 보는 눈.<br>
+    각자가 가진 이해의 조각이 모였을 때,<br>
+    우리는 비로소 한 건물의 전모를 온전히 이해할 수 있다.</p>
+    <p>어떤 위대한 건물도 혼자 지은 것은 없다.<br>
+    설계자, 시공자, 구조기술자, 설비기술자, 감리자 —<br>
+    각자의 자리에서 각자의 전문성을 다하고, 그것이 하나의 건물로 완성된다.</p>
+    <p>고딕·로마네스크·영국식이 한 건물 안에 어우러진 구 군산세관처럼,<br>
+    서양식·일본식·한국식이 한 공간에 녹아든 이영춘 가옥처럼,<br>
+    서로 다른 것들이 만나 더 풍성한 무언가를 만들어내는 것 —<br>
+    그것이 건축이고, 그것이 이 길을 함께 걷는 이유다.</p>
+  </div>
+
+  <div class="divider"><div class="divider-dot"></div></div>
+
+  <!-- ═══ 에필로그 ══════════════════════════════════ -->
+  <div class="chapter">
+    <span class="chapter-label">에필로그</span>
+    <h2 class="chapter-title">우리가 짓는 내일</h2>
+  </div>
+  <div class="body-text">
+    <p>군산의 붉은 벽돌 앞에 서면, 자연스럽게 한 가지 질문을 품게 된다.</p>
+  </div>
+  <div class="emphasis">"오늘 내가 설계하고 짓는 건물은,<br>
+  100년 후 어떤 언어로 읽힐 것인가?"</div>
+  <div class="body-text">
+    <p>그 건물은 누군가를 위한 공간인가, 누군가를 배제하는 공간인가.<br>
+    그 기술은 사람을 위해 쓰이고 있는가, 권력을 위해 쓰이고 있는가.<br>
+    그 구조는 세월을 견딜 진실을 담고 있는가.</p>
+    <p>군산의 건물들은 100년 동안 거짓말하지 않았다.<br>
+    우리도, 그렇게 짓자.</p>
+    <p>그 거리에서, 함께 다짐하고 싶다.</p>
+  </div>
+
+  <div class="divider">
+    <div class="divider-dot"></div>
+    <div class="divider-dot"></div>
+    <div class="divider-dot"></div>
+  </div>
+
+  <!-- ═══ DECLARATION ══════════════════════════════ -->
+  <div class="declaration">
+    <div class="decl-lead">
+      <span>건물은 거짓말하지 않는다.</span>
+      <span>우리도, 그렇게 짓자.</span>
+    </div>
+    <div class="decl-lead" style="margin-top:12px; font-size: clamp(12px,2.5vw,14px);">
+      <span>권력의 언어가 새겨진 거리를 함께 걷고,</span>
+      <span>저항의 역사가 깃든 골목에서 나란히 멈추고,</span>
+      <span>100년 전 누군가의 손이 닿은 벽돌 앞에서 조용히 질문을 품는 날.</span>
+      <span style="margin-top:10px; display:block;">그날이 온다.</span>
+    </div>
+    <div class="decl-divider-line"></div>
+    <div class="decl-date">2026년 4월 25일</div>
+    <div class="decl-statement">우리는 그 곳에 갑니다.</div>
+    <div class="decl-divider-line2"></div>
+    <div class="decl-place">― 군&nbsp;&nbsp;&nbsp;산 ―</div>
+  </div>
+
+  <!-- ═══ INFO BOX ══════════════════════════════════ -->
+  <div class="info-box">
+    <p class="info-box-title">탐방 안내</p>
+
+    <div class="info-grid">
+      <div class="info-row">
+        <span class="info-icon">📅</span>
+        <span class="info-label">일&nbsp;&nbsp;&nbsp;&nbsp;시</span>
+        <span class="info-value">2026년 4월 25일 (토)</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">📍</span>
+        <span class="info-label">집결지</span>
+        <span class="info-value">양재역<br><small style="color:var(--ink-light)">군산 시간여행마을 일원 탐방</small></span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">👥</span>
+        <span class="info-label">대&nbsp;&nbsp;&nbsp;&nbsp;상</span>
+        <span class="info-value">건축 관련 기술인 일동</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🕘</span>
+        <span class="info-label">집결시간</span>
+        <span class="info-value">오전 6시 50분</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🚌</span>
+        <span class="info-label">이&nbsp;&nbsp;&nbsp;&nbsp;동</span>
+        <span class="info-value">단체 버스 이용 (출발지 추후 안내)</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">✉️</span>
+        <span class="info-label">마&nbsp;&nbsp;&nbsp;&nbsp;감</span>
+        <span class="info-value">2026년 4월 ○○일까지</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">📞</span>
+        <span class="info-label">문&nbsp;&nbsp;&nbsp;&nbsp;의</span>
+        <span class="info-value">임요섭 대의원&nbsp;&nbsp;010-4304-9494</span>
+      </div>
+    </div>
+
+    <div class="info-divider"></div>
+
+    <div class="info-apply">
+      <a href="#" class="apply-btn">참 가 신 청 하 기</a>
+    </div>
+
+    <p class="org-line">주최 : 건설기술인협회 / 주관 : 건축기술인회 &nbsp;|&nbsp; 회장 장행수</p>
+  </div>
+
+  <!-- ═══ FOOTER QUOTE ═════════════════════════════ -->
+  <footer class="footer-quote">
+    <p>"이 초청장이 당신의 손에 닿은 것은, 우연이 아닙니다.<br>
+    건축의 언어를 읽을 줄 아는 당신이기 때문입니다."</p>
+  </footer>
+
+  <!-- ═══ BOTTOM ORNAMENT ══════════════════════════ -->
+  <div class="bottom-ornament">
+    <div class="dots">
+      <div class="dot"></div>
+      <div class="dot big"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+
+</div><!-- /page-wrap -->
+</body>
+</html>
+     
