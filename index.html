@@ -555,7 +555,10 @@
             </button>
         </div>
         <div class="sticky-nav-row-2">
-            <button onclick="switchTab('prologue')" class="nav-btn nav-row-2-btn active" data-target="prologue">
+            <button onclick="switchTab('greeting')" class="nav-btn nav-row-2-btn active" data-target="greeting">
+                <span class="nav-icon">🎤</span>회장인삿말
+            </button>
+            <button onclick="switchTab('prologue')" class="nav-btn nav-row-2-btn" data-target="prologue">
                 <span class="nav-icon">📜</span>프롤로그
             </button>
             <button onclick="switchTab('gunsan')" class="nav-btn nav-row-2-btn" data-target="gunsan">
@@ -575,7 +578,44 @@
         <!-- ============================================== -->
         <!-- [탭 1] 프롤로그 (초대장 원문) -->
         <!-- ============================================== -->
-        <div id="prologue" class="section-wrap active">
+        <!-- ============================================== -->
+        <!-- [탭 0] 회장인삿말 -->
+        <!-- ============================================== -->
+        <div id="greeting" class="section-wrap active">
+            <header class="top-ornament">
+                <p class="label">건축기술인 문화탐방 · 2026</p>
+                <h1 class="main-title">회장 인삿말</h1>
+                <p class="sub-title">건축기술인회 회장 장행수</p>
+            </header>
+
+            <div style="text-align:center; margin-bottom:30px;">
+                <img src="jang.jpg" alt="건축기술인회 회장 장행수" style="width:220px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.12);" />
+            </div>
+
+            <div style="font-size:clamp(15px, 4vw, 17px); line-height:2.2; color:var(--ink); text-align:left;">
+                <p>안녕하십니까.</p>
+                <br>
+                <p>바쁘신 가운데에도 제11대 건축기술인회 두 번째 문화행사인 「건축문화탐방」에 함께해 주셔서 깊이 감사드립니다.</p>
+                <br>
+                <p>이번 탐방은 군산과 장항 일대의 근대 건축과 산업유산, 그리고 친환경·재생 건축의 다양한 현장을 살펴보며 건축의 역사적 가치와 시대적 의미를 되새기는 뜻깊은 시간이 될 것입니다. 또한 현장에서의 경험과 교류를 통해 건축기술인으로서의 통찰과 전문성을 함께 나누는 소중한 자리가 되기를 기대합니다.</p>
+                <br>
+                <p>지속가능건축운영위원회에서도 더욱 내실 있고 의미 있는 행사가 될 수 있도록 정성을 다해 준비하고 있습니다. 안전과 건강에 유의하시며 뜻깊고 즐거운 건축문화 탐방이 되시기를 바랍니다.</p>
+                <br>
+                <p>여러분의 관심과 성원에 깊이 감사드리며, 앞으로도 건축기술인회의 발전을 위해 지속적인 격려와 성원을 부탁드립니다.</p>
+                <br>
+                <p>감사합니다.</p>
+                <br>
+                <p style="text-align:right; font-weight:600; color:var(--sepia);">
+                    한국건설기술인회<br>
+                    건축기술인회 회장 장행수 올림
+                </p>
+            </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- [탭 1] 프롤로그 (초대장 원문) -->
+        <!-- ============================================== -->
+        <div id="prologue" class="section-wrap">
             <header class="top-ornament">
                 <p class="label">건축기술인 문화탐방 · 2026</p>
                 <h1 class="main-title">건물은 거짓말하지 않는다</h1>
